@@ -7,9 +7,19 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas_ta as ta
+import json
+import os
 
-# Define your Alpha Vantage API key
-ALPHA_VANTAGE_API_KEY = "VQYQXM1FYCBL1P7M"
+# Get the absolute path to the current script's directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+secrets_path = os.path.join(current_dir, 'secrets.txt')
+
+# Read and parse the file
+with open(secrets_path, 'r') as f:
+    secrets = json.load(f)  # Safely evaluate the contents as a dictionary
+
+# Get the API key
+ALPHA_VANTAGE_API_KEY = secrets['ALPHA_VANTAGE_API_KEY']
 MAX_CALLS_PER_MINUTE = 70
 
 
